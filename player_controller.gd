@@ -1,5 +1,12 @@
 extends CharacterBody3D
 
+#region inventory
+@export var inventory_data: InventoryData
+signal toggle_inventory
+
+@onready var interact_ray: RayCast3D = $Camera3D/InteractRay
+#endregion
+
 const SPEED = 5.0
 const JUMP_VELOCITY = 4.5
 
@@ -20,8 +27,14 @@ func _unhandled_input(event: InputEvent) -> void:
 	
 	if Input.is_action_just_pressed("ui_cancel"):
 		get_tree().quit()
-
-
+	
+	#region inventory
+	if Input.is_action_just_pressed("inventory"):
+		toggle_inventory.emit()
+	if Input.is_action_just_pressed("interact"):
+		interact()
+	#endregion
+	
 func _physics_process(delta: float) -> void:
 	# Add the gravity.
 	if not is_on_floor():
@@ -43,3 +56,7 @@ func _physics_process(delta: float) -> void:
 		velocity.z = move_toward(velocity.z, 0, SPEED)
 
 	move_and_slide()
+
+func interact() -> void:
+	if interact_ray.is_colliding():
+		interact_ray.get_collider().player_interact()

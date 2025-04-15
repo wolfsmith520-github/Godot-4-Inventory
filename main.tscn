@@ -1,7 +1,18 @@
-[gd_scene load_steps=10 format=3 uid="uid://bcl3e70qyvo6p"]
+[gd_scene load_steps=24 format=3 uid="uid://bcl3e70qyvo6p"]
 
-[ext_resource type="Script" uid="uid://w7bg3yu5rxsh" path="res://player_controller.gd" id="1_ig7tw"]
+[ext_resource type="Script" uid="uid://dic2ncocmjvde" path="res://main.gd" id="1_1bvp3"]
+[ext_resource type="PackedScene" uid="uid://cbaroxlt013k1" path="res://player.tscn" id="1_h2yge"]
 [ext_resource type="PackedScene" uid="uid://co268qk3fjky5" path="res://Inventory/invrntory.tscn" id="2_0xm2m"]
+[ext_resource type="Resource" uid="uid://djmuegp8ikvcu" path="res://Inventory/test_inv.tres" id="2_1bvp3"]
+[ext_resource type="Script" uid="uid://cdv0n2anyu70c" path="res://Inventory/inventory_interface.gd" id="4_lquwl"]
+[ext_resource type="PackedScene" uid="uid://srkc2kwwuxp" path="res://Inventory/slot.tscn" id="6_7mycd"]
+[ext_resource type="PackedScene" uid="uid://bn1dlyv77dwqm" path="res://Interactable/chest.tscn" id="7_272bh"]
+[ext_resource type="Script" uid="uid://q4guyggjawie" path="res://Resource/inventory_data.gd" id="8_kek77"]
+[ext_resource type="Script" uid="uid://da1d4poxkt70d" path="res://Resource/slot_data.gd" id="9_4c57u"]
+[ext_resource type="Resource" uid="uid://b5kxxejb7f8du" path="res://Item/Items/Banana.tres" id="10_ycdy4"]
+[ext_resource type="Resource" uid="uid://dunga8clq5y27" path="res://Item/Items/Medic.tres" id="11_w48qg"]
+[ext_resource type="Resource" uid="uid://c1b075y1jvqcj" path="res://Item/Items/Minigun.tres" id="12_vivmo"]
+[ext_resource type="Resource" uid="uid://dbiwi6pp6tej" path="res://Item/Items/Sandvich.tres" id="13_2cqfq"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_ig7tw"]
 sky_horizon_color = Color(0.662243, 0.671743, 0.686743, 1)
@@ -22,11 +33,39 @@ size = Vector2(20, 20)
 [sub_resource type="ConcavePolygonShape3D" id="ConcavePolygonShape3D_7dm0k"]
 data = PackedVector3Array(10, 0, 10, -10, 0, 10, 10, 0, -10, -10, 0, 10, -10, 0, -10, 10, 0, -10)
 
-[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_7dm0k"]
+[sub_resource type="Resource" id="Resource_yaehf"]
+script = ExtResource("9_4c57u")
+item_data = ExtResource("10_ycdy4")
+quantity = 1
+metadata/_custom_type_script = "uid://da1d4poxkt70d"
 
-[sub_resource type="CapsuleMesh" id="CapsuleMesh_ig7tw"]
+[sub_resource type="Resource" id="Resource_074og"]
+script = ExtResource("9_4c57u")
+item_data = ExtResource("11_w48qg")
+quantity = 1
+metadata/_custom_type_script = "uid://da1d4poxkt70d"
 
-[node name="Main" type="Node3D"]
+[sub_resource type="Resource" id="Resource_cegan"]
+script = ExtResource("9_4c57u")
+item_data = ExtResource("12_vivmo")
+quantity = 1
+metadata/_custom_type_script = "uid://da1d4poxkt70d"
+
+[sub_resource type="Resource" id="Resource_82xsv"]
+script = ExtResource("9_4c57u")
+item_data = ExtResource("13_2cqfq")
+quantity = 1
+metadata/_custom_type_script = "uid://da1d4poxkt70d"
+
+[sub_resource type="Resource" id="Resource_efxa6"]
+script = ExtResource("8_kek77")
+slot_datas = Array[ExtResource("9_4c57u")]([SubResource("Resource_yaehf"), SubResource("Resource_074og"), SubResource("Resource_cegan"), SubResource("Resource_82xsv"), null, null])
+metadata/_custom_type_script = "uid://q4guyggjawie"
+
+[node name="Main" type="Node3D" node_paths=PackedStringArray("player", "inventory_interface")]
+script = ExtResource("1_1bvp3")
+player = NodePath("Player")
+inventory_interface = NodePath("UI/InventoryInterface")
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
 environment = SubResource("Environment_h2yge")
@@ -43,27 +82,20 @@ mesh = SubResource("PlaneMesh_7dm0k")
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Ground/StaticBody3D"]
 shape = SubResource("ConcavePolygonShape3D_7dm0k")
 
-[node name="Player" type="CharacterBody3D" parent="."]
-script = ExtResource("1_ig7tw")
-
-[node name="CollisionShape3D" type="CollisionShape3D" parent="Player"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
-shape = SubResource("CapsuleShape3D_7dm0k")
-
-[node name="Camera3D" type="Camera3D" parent="Player"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.5, 0)
-
-[node name="MeshInstance3D" type="MeshInstance3D" parent="Player"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
-mesh = SubResource("CapsuleMesh_ig7tw")
+[node name="Player" parent="." instance=ExtResource("1_h2yge")]
+inventory_data = ExtResource("2_1bvp3")
 
 [node name="UI" type="CanvasLayer" parent="."]
 
 [node name="InventoryInterface" type="Control" parent="UI"]
+visible = false
 layout_mode = 3
-anchors_preset = 0
-offset_right = 40.0
-offset_bottom = 40.0
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("4_lquwl")
 
 [node name="PlayerInventory" parent="UI/InventoryInterface" instance=ExtResource("2_0xm2m")]
 layout_mode = 0
@@ -71,3 +103,22 @@ offset_left = 10.0
 offset_top = 10.0
 offset_right = 50.0
 offset_bottom = 50.0
+
+[node name="ExternalInventory" parent="UI/InventoryInterface" instance=ExtResource("2_0xm2m")]
+visible = false
+layout_mode = 0
+offset_left = 10.0
+offset_top = 329.0
+offset_right = 50.0
+offset_bottom = 369.0
+
+[node name="GrabbedSlot" parent="UI/InventoryInterface" instance=ExtResource("6_7mycd")]
+visible = false
+self_modulate = Color(1, 1, 1, 0)
+layout_mode = 0
+offset_right = 64.0
+offset_bottom = 64.0
+
+[node name="Chest" parent="." instance=ExtResource("7_272bh")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.458156, -4)
+inventory_data = SubResource("Resource_efxa6")

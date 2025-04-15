@@ -1,0 +1,16 @@
+[gd_resource type="Resource" script_class="ItemData" load_steps=4 format=3 uid="uid://dbiwi6pp6tej"]
+
+[ext_resource type="Script" uid="uid://buqg5ja6xe2ja" path="res://Resource/item_data.gd" id="1_a8pcx"]
+[ext_resource type="Texture2D" uid="uid://b7ed4fj72feip" path="res://Item/texture.png" id="2_4mdxp"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_tucur"]
+atlas = ExtResource("2_4mdxp")
+region = Rect2(512, 512, 512, 512)
+
+[resource]
+script = ExtResource("1_a8pcx")
+name = "Sandvich"
+description = ""
+stackable = false
+texture = SubResource("AtlasTexture_tucur")
+metadata/_custom_type_script = "uid://buqg5ja6xe2ja"

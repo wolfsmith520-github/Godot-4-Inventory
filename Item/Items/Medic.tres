@@ -1,0 +1,16 @@
+[gd_resource type="Resource" script_class="ItemData" load_steps=4 format=3 uid="uid://dunga8clq5y27"]
+
+[ext_resource type="Script" uid="uid://buqg5ja6xe2ja" path="res://Resource/item_data.gd" id="1_oinsq"]
+[ext_resource type="Texture2D" uid="uid://b7ed4fj72feip" path="res://Item/texture.png" id="2_5he0m"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_5ai0t"]
+atlas = ExtResource("2_5he0m")
+region = Rect2(0, 0, 512, 512)
+
+[resource]
+script = ExtResource("1_oinsq")
+name = "Medic"
+description = ""
+stackable = false
+texture = SubResource("AtlasTexture_5ai0t")
+metadata/_custom_type_script = "uid://buqg5ja6xe2ja"
