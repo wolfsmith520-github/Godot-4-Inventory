@@ -1,0 +1,16 @@
+[gd_resource type="Resource" script_class="ItemData" load_steps=4 format=3 uid="uid://mrbqew4pa1g8"]
+
+[ext_resource type="Script" uid="uid://buqg5ja6xe2ja" path="res://Resource/item_data.gd" id="1_s4kgt"]
+[ext_resource type="Texture2D" uid="uid://dh4lgtahdxnup" path="res://Item/#1 - Transparent Icons.png" id="2_htujd"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_4bkvq"]
+atlas = ExtResource("2_htujd")
+region = Rect2(288, 448, 32, 32)
+
+[resource]
+script = ExtResource("1_s4kgt")
+name = "Apple"
+description = "An apple a day keeps the doctor away"
+stackable = true
+texture = SubResource("AtlasTexture_4bkvq")
+metadata/_custom_type_script = "uid://buqg5ja6xe2ja"
