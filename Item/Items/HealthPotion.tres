@@ -1,0 +1,17 @@
+[gd_resource type="Resource" script_class="ItemDataConsumable" load_steps=4 format=3 uid="uid://bv0lqteq2jlb1"]
+
+[ext_resource type="Script" uid="uid://bq6pcnlvb5isp" path="res://Resource/item_data_consumable.gd" id="1_4jtjo"]
+[ext_resource type="Texture2D" uid="uid://dh4lgtahdxnup" path="res://Item/#1 - Transparent Icons.png" id="2_nineg"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_t3gi0"]
+atlas = ExtResource("2_nineg")
+region = Rect2(0, 288, 32, 32)
+
+[resource]
+script = ExtResource("1_4jtjo")
+heal_value = 20
+name = "Health Potion"
+description = "Heal you 20 hp"
+stackable = true
+texture = SubResource("AtlasTexture_t3gi0")
+metadata/_custom_type_script = "uid://bq6pcnlvb5isp"

@@ -2,9 +2,13 @@ extends CharacterBody3D
 
 #region inventory
 @export var inventory_data: InventoryData
+@export var equip_inventory_data: InventoryDataEquip
 signal toggle_inventory
 
 @onready var interact_ray: RayCast3D = $Camera3D/InteractRay
+
+@export var health: int = 5
+
 #endregion
 
 const SPEED = 5.0
@@ -16,6 +20,7 @@ var gravity: float = ProjectSettings.get_setting("physics/3d/default_gravity")
 @onready var camera: Camera3D = $Camera3D
 
 func _ready() -> void:
+	PlayerManager.player = self
 	Input.mouse_mode = Input.MOUSE_MODE_CAPTURED
 
 
@@ -60,3 +65,10 @@ func _physics_process(delta: float) -> void:
 func interact() -> void:
 	if interact_ray.is_colliding():
 		interact_ray.get_collider().player_interact()
+
+func get_drop_position() -> Vector3:
+	var direction = -camera.global_transform.basis.z
+	return camera.global_position + direction
+
+func heal(health_value: int) -> void:
+	health += health_value

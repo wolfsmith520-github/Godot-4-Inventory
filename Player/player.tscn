@@ -1,12 +1,13 @@
 [gd_scene load_steps=4 format=3 uid="uid://cbaroxlt013k1"]
 
-[ext_resource type="Script" uid="uid://w7bg3yu5rxsh" path="res://player_controller.gd" id="1_4flbx"]
+[ext_resource type="Script" uid="uid://w7bg3yu5rxsh" path="res://Player/player_controller.gd" id="1_4flbx"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_7dm0k"]
 
 [sub_resource type="CapsuleMesh" id="CapsuleMesh_ig7tw"]
 
 [node name="Player" type="CharacterBody3D"]
+collision_layer = 2
 script = ExtResource("1_4flbx")
 
 [node name="Camera3D" type="Camera3D" parent="."]

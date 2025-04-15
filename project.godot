@@ -14,6 +14,10 @@ config/name="Godot-4-Inventory"
 config/features=PackedStringArray("4.4", "Forward Plus")
 config/icon="res://icon.svg"
 
+[autoload]
+
+PlayerManager="*res://Player/player_manager.gd"
+
 [dotnet]
 
 project/assembly_name="Godot-4-Inventory"

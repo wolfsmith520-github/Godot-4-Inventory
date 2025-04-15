@@ -1,0 +1,17 @@
+[gd_resource type="Resource" script_class="ItemDataEquip" load_steps=4 format=3 uid="uid://l1bnatlpqjmn"]
+
+[ext_resource type="Script" uid="uid://bd08x5flnw74d" path="res://Resource/item_data_equip.gd" id="1_ammm3"]
+[ext_resource type="Texture2D" uid="uid://dh4lgtahdxnup" path="res://Item/#1 - Transparent Icons.png" id="2_80neu"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_lnp82"]
+atlas = ExtResource("2_80neu")
+region = Rect2(96, 224, 32, 32)
+
+[resource]
+script = ExtResource("1_ammm3")
+defence = 2
+name = "Iron Helmet"
+description = "This will protect you penis"
+stackable = false
+texture = SubResource("AtlasTexture_lnp82")
+metadata/_custom_type_script = "uid://bd08x5flnw74d"
