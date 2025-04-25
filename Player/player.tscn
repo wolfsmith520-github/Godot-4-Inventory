@@ -1,6 +1,7 @@
-[gd_scene load_steps=4 format=3 uid="uid://cbaroxlt013k1"]
+[gd_scene load_steps=5 format=3 uid="uid://cbaroxlt013k1"]
 
 [ext_resource type="Script" uid="uid://w7bg3yu5rxsh" path="res://Player/player_controller.gd" id="1_4flbx"]
+[ext_resource type="Script" uid="uid://6lrwqqqsffqf" path="res://addons/jbs_health_node/jbs_health.gd" id="2_4ntmi"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_7dm0k"]
 
@@ -38,3 +39,7 @@ offset_bottom = 5.0
 grow_horizontal = 2
 grow_vertical = 2
 mouse_filter = 2
+
+[node name="Health" type="Node" parent="."]
+script = ExtResource("2_4ntmi")
+metadata/_custom_type_script = "uid://6lrwqqqsffqf"

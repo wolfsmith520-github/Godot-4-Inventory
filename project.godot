@@ -17,10 +17,16 @@ config/icon="res://icon.svg"
 [autoload]
 
 PlayerManager="*res://Player/player_manager.gd"
+Signal_Debugger="*res://addons/SignalVisualizer/Debugger/SignalDebugger.gd"
+GlobalHealth="*res://addons/jbs_health_node/jbs_global_health.gd"
 
 [dotnet]
 
 project/assembly_name="Godot-4-Inventory"
+
+[editor_plugins]
+
+enabled=PackedStringArray("res://addons/SignalVisualizer/plugin.cfg", "res://addons/jbs_health_node/plugin.cfg")
 
 [global_group]
 
